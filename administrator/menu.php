@@ -1,9 +1,9 @@
 <ul class="my-menu">
-    <li><a href="#">KSIĄŻKI</a></li>    
-    <li><a href="#">AUTORZY</a></li> 
-    <li><a href="#">WYDAWNICTWA</a></li> 
-    <li><a href="#">GATUNKI</a></li>
-    <li><a href="#">REZERWACJE</a></li>
-    <li><a href="#">WYPOŻYCZENIA</a></li> 
-    <li><a href="#">MOJE DANE</a></li>
+    <li><a href="ksiazki.php">KSIĄŻKI</a></li>    
+    <li><a href="autorzy.php">AUTORZY</a></li> 
+    <li><a href="wydawnictwa.php">WYDAWNICTWA</a></li> 
+    <li><a href="gatunki.php">GATUNKI</a></li>
+    <li><a href="rezerwacje.php">REZERWACJE</a></li>
+    <li><a href="wypozyczenia.php">WYPOŻYCZENIA</a></li> 
+    <li><a href="moje-dane.php">MOJE DANE</a></li>
 </ul>
