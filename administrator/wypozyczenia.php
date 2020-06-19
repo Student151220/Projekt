@@ -47,13 +47,71 @@ require_once('../connect.php');
         <div class="clear"></div> 
         <hr/>
         <?php
-                 
+          $akt_id = (isset($_GET['id'])) ? (int)$_GET['id'] : 0; // pobiera z adresu jaka jest podstrona
+          $ider = (isset($_GET['id'])) ? (int)$_GET['id'] : 0;       // pobiera id z adresu        
+          $datas = date('d-m-Y');
+          $data = date("Y-m-d", strtotime($datas));
+          $sql1 = "SELECT * FROM wypozyczenie";
+          $result1 = $connection -> query($sql1);
+          if ($rezultat1 = $connection -> query($sql1)) {
+            $ilosc = $rezultat1 -> num_rows;
+            if ($ilosc == 0) {
+                echo "Brak wypożyczeń.";
+            }
+            else {
+              echo "<table>";
+              echo "<tr>";
+              echo "<td>UŻYTKOWNIK</td>";
+              echo "<td>TYTUŁ KSIĄŻKI</td>";
+              echo "<td>TERMIN WYPOŻYCZENIA</td>";
+              echo "<td>NIEPRZEKRACZALNY TERMIN ODDANIA</td>";
+              echo "<td>AKCJA</td>";
+              echo "</tr>";
+            
+              while($row1 = mysqli_fetch_row($rezultat1)) {
+                echo "<tr>";
+                extract($row1);
+                $idek = $row1[0]; //id wypozyczenia
+                $iduz = $row1[1];
+                $idks = $row1[2];
+                $data_wyp = $row1[3];
+                $data_odd = $row1[4];
+                
+                $sql2 = "SELECT * FROM uzytkownicy WHERE id_uzytkownika=$iduz";
+                $rezultat2 = $connection -> query($sql2);
+                $row2 = mysqli_fetch_row($rezultat2);
+                
+                $sql3 = "SELECT * FROM ksiazka WHERE id_ksiazki=$idks";
+                $rezultat3 = $connection -> query($sql3);
+                $row3 = mysqli_fetch_row($rezultat3);
+                $idau = $row3[2];
+                $tytul = $row3[1];
+                $idgat = $row3[3];
+                $idwyd = $row3[4];
+                
+                $sql4 = "SELECT imie, nazwisko FROM autor WHERE id_autora=$idau";
+                $rezultat4 = $connection -> query($sql4);
+                $row4 = mysqli_fetch_row($rezultat4);
+                
+                echo "<td>".$row2[1]." ".$row2[2]."</td>";
+                echo "<td>".$row3[1]."</td>";
+                echo "<td>".$row1[3]."</td>";
+                echo "<td>".$row1[4]."</td>";
+                
+                $termin = $row1[4];
+                if ($termin > $data) {
+                  echo "<td><a href='potwierdz-oddanie.php?id=$idek&id_ksiazki=$idks'><div class='dodajakt'>Potwierdź oddanie</div></a></td>";
+                } 
+                else {
+                  echo "<td>Oddana</td>";
+                }
+                echo "</tr>";
+              }
+              echo "</table>";
+            }
+          }
         ?>
-        </div>
+      </div>
     </div> <!-- content -->
-
-
-
-
   </body>
 </html>

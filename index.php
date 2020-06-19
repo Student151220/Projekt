@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-//przekierowanie po zalogowaniu na czytelnika lub administratora
+
 if(isset($_SESSION['zalogowany']) && ($_SESSION['zalogowany'] == true))
 {
 	if ($_SESSION['kto'] == '1') {
@@ -15,7 +15,7 @@ if(isset($_SESSION['zalogowany']) && ($_SESSION['zalogowany'] == true))
 }
 
 
-// obsługa formularza rejestracji
+
 if (isset($_POST['i_email'])) {
     $login = $_POST['i_login'];
     $imie = $_POST['i_imie'];
