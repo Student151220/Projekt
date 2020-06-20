@@ -98,7 +98,8 @@
                                 echo "<td>".$row1[3]."</td>";
                                 echo "<td>".$row1[4]."</td>";
                                 
-                                echo "<td><a href='potwierdz-odebranie.php?id=$idek'><div class='dodajakt'>Potwierdź odebranie</div></a></td>";
+                                echo "<td><a href='potwierdz-odebranie.php?id=$idek&id_ksiazki=$idks'><div class='dodajakt'>Potwierdź odebranie</div></a></td>";
+
                                 echo "</tr>";
                             }
 
